@@ -1,36 +1,88 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Next.js eCommerce Store with Lemon Squeezy
 
-## Getting Started
+This project is a minimal eCommerce store built using Next.js, Prisma, and SQLite, with Lemon Squeezy for payment processing. It allows users to purchase digital products securely.
 
-First, run the development server:
+## Features
+- **Next.js** for server-side rendering and frontend development
+- **Prisma** as the ORM for database management
+- **SQLite** as the lightweight database for local development
+- **Lemon Squeezy** for handling digital product sales and payments
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## Environment Variables
+To run this project, create a `.env` file and add the following environment variables:
+
+```
+DATABASE_URL="file:./dev.db"
+JWT_SECRET="your-secret-key-here"
+NEXT_PUBLIC_URL="http://localhost:3000"
+LEMON_SQUEEZY_API_KEY="your-lemon-squeezy-api-key"
+LEMON_SQUEEZY_STORE_ID="your-lemon-squeezy-store-id"
+LEMON_SQUEEZY_VARIANT_ID="your-lemon-squeezy-variant-id"
+LEMON_SQUEEZY_SIGNING_SECRET="your-lemon-squeezy-signing-secret"
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Description of Variables
+- **DATABASE_URL**: Specifies the SQLite database file path.
+- **JWT_SECRET**: Secret key used for JWT authentication.
+- **NEXT_PUBLIC_URL**: Base URL for the frontend.
+- **LEMON_SQUEEZY_API_KEY**: API key to interact with Lemon Squeezy.
+- **LEMON_SQUEEZY_STORE_ID**: Store ID associated with Lemon Squeezy.
+- **LEMON_SQUEEZY_VARIANT_ID**: The product variant ID for the digital product.
+- **LEMON_SQUEEZY_SIGNING_SECRET**: Secret used to verify Lemon Squeezy webhook events.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+## Getting Started
+1. Clone the repository:
+   ```sh
+   git clone https://github.com/your-username/your-repo.git
+   ```
+2. Install dependencies:
+   ```sh
+   npm install
+   ```
+3. Set up the database:
+   ```sh
+   npx prisma migrate dev --name init
+   ```
+4. Start the development server:
+   ```sh
+   npm run dev
+   ```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Setup Method
+The project includes a setup script to automate installation and database initialization:
+```json
+{
+  "name": "payment-setup",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "prisma generate && next build",
+    "start": "next start",
+    "seed": "node lib/seed.js",
+    "setup": "npm install && prisma migrate dev --name init && npm run seed"
+  },
+  "dependencies": {
+    "@lemonsqueezy/lemonsqueezy.js": "^4.0.0",
+    "@prisma/client": "^5.6.0",
+    "axios": "^1.6.2",
+    "bcryptjs": "^2.4.3",
+    "jsonwebtoken": "^9.0.2",
+    "next": "15.2.3",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "devDependencies": {
+    "@eslint/eslintrc": "^3",
+    "@tailwindcss/postcss": "^4",
+    "eslint": "^9",
+    "eslint-config-next": "15.2.3",
+    "prisma": "^5.6.0",
+    "tailwindcss": "^4"
+  }
+}
+```
 
-## Learn More
+## License
+This project is licensed under the MIT License.
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
