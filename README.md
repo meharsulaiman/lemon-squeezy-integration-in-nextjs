@@ -1,4 +1,4 @@
-# Next.js E-Commerce Store with Lemon Squeezy
+# Next.js E-Commerce Store with Lemon Squeezy Payment Gateway (Stripe Alternative)
 
 This project is a minimal eCommerce store built using Next.js, Prisma, and SQLite, with Lemon Squeezy for payment processing. It allows users to purchase digital products securely.
 
