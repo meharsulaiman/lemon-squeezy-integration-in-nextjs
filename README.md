@@ -3,6 +3,7 @@
 This project is a minimal eCommerce store built using Next.js, Prisma, and SQLite, with Lemon Squeezy for payment processing. It allows users to purchase digital products securely.
 
 ## Features
+
 - **Next.js** for server-side rendering and frontend development.
 - **Prisma** as the ORM for database management.
 - **SQLite** as the lightweight database for local development.
